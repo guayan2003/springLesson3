@@ -16,6 +16,12 @@ public class Test4Client {
 		for (Product p : list) {
 			System.out.println(p);
 		}
+		
+		Product p = new Product();
+		p.setName("Frankie");
+		p.setDescription("Hello Sf");
+		int key = productDao.insert(p);
+		System.out.println(key);
 	}
 
 }

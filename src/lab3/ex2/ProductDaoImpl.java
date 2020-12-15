@@ -34,4 +34,17 @@ public class ProductDaoImpl extends NamedParameterJdbcDaoSupport implements
 				.query("select * from product", productRowMapper);
 	}
 
+	@Override
+	public int insert(Product product) {
+		// TODO Auto-generated method stub
+		KeyHolder keyHolder = new GeneratedKeyHolder();
+		SqlParameterSource params =
+				new MapSqlParameterSource("name", product.getName())
+					.addValue("desc", product.getDescription());
+		
+		getNamedParameterJdbcTemplate().update("insert into product (`name`, `desc`) values(:name, :desc)", params, keyHolder);
+		
+		return keyHolder.getKey().intValue();
+	}
+
 }
